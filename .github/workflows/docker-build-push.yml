@@ -1,0 +1,43 @@
+name: Build and Push Docker Images
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1️⃣ Checkout code
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    # 2️⃣ Login to Docker Hub
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    # 3️⃣ Build Backend Image
+    - name: Build Backend Image
+      run: |
+        docker build -f docker/backend.Dockerfile \
+          -t ${{ secrets.DOCKERHUB_USERNAME }}/inventory-backend:latest backend
+
+    # 4️⃣ Push Backend Image
+    - name: Push Backend Image
+      run: |
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/inventory-backend:latest
+
+    # 5️⃣ Build Frontend Image
+    - name: Build Frontend Image
+      run: |
+        docker build -f docker/frontend.Dockerfile \
+          -t ${{ secrets.DOCKERHUB_USERNAME }}/inventory-frontend:latest frontend
+
+    # 6️⃣ Push Frontend Image
+    - name: Push Frontend Image
+      run: |
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/inventory-frontend:latest
