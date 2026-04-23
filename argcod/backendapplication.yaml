@@ -10,10 +10,8 @@ spec:
     targetRevision: main
     path: helm/backend
   destination:
-    - namespace: inventory
-      server: https://kubernetes.default.svc
-    - namespace: argocd   
-      server: https://kubernetes.default.svc
+    namespace: inventory
+    server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       prune: true
