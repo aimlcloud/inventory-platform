@@ -6,7 +6,7 @@ metadata:
 spec:
   project: inventory
   source:
-    repoURL: https://github.com/your-org/inventory-platform.git
+    repoURL: https://github.com/aimlcloud/inventory-platform.git
     targetRevision: main
     path: helm/frontend
   destination:
