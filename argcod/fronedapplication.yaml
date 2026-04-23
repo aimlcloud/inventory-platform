@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: frontend-app
-  namespace: inventory
+  namespace: argocd
 spec:
   project: inventory
   source:
