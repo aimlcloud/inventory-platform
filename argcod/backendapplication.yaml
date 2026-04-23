@@ -4,7 +4,7 @@ metadata:
   name: backend-app
   namespace: argocd
 spec:
-  project: inventory-project
+  project: inventory
   source:
     repoURL: https://github.com/your-org/inventory-platform.git
     targetRevision: main
