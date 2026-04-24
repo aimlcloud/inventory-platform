@@ -1,18 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: frontend-app
-  namespace: argocd
+name: frontend-app
+namespace: argocd
 spec:
-  project: inventory
-  source:
-    repoURL: https://github.com/aimlcloud/inventory-platform.git
-    targetRevision: main
-    path: helm/frontend
-  destination:
-    namespace: inventory
-    server: https://kubernetes.default.svc
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+project: inventory
+source:
+repoURL: https://github.com/aimlcloud/inventory-platform.git
+targetRevision: main
+path: helm/frontend
+helm:
+releaseName: frontend-app
+destination:
+namespace: inventory
+server: https://kubernetes.default.svc
+syncPolicy:
+automated:
+prune: true
+selfHeal: true
+
