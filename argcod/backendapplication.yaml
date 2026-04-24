@@ -1,21 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-name: backend-app
-namespace: argocd
+  name: backend-app
+  namespace: argocd
 spec:
-project: inventory
-source:
-repoURL: https://github.com/aimlcloud/inventory-platform.git
-targetRevision: main
-path: helm/backend
-helm:
-releaseName: backend-app
-destination:
-namespace: inventory
-server: https://kubernetes.default.svc
-syncPolicy:
-automated:
-prune: true
-selfHeal: true
-
+  project: inventory
+  source:
+    repoURL: https://github.com/aimlcloud/inventory-platform.git
+    targetRevision: main
+    path: helm/backend
+    helm:
+      releaseName: backend-app
+  destination:
+    namespace: inventory
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
